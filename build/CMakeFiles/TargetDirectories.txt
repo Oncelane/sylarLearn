@@ -1,0 +1,4 @@
+/home/oncelane/workspace/sylar/build/CMakeFiles/rebuild_cache.dir
+/home/oncelane/workspace/sylar/build/CMakeFiles/edit_cache.dir
+/home/oncelane/workspace/sylar/build/CMakeFiles/test.dir
+/home/oncelane/workspace/sylar/build/CMakeFiles/sylar.dir

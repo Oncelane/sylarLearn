@@ -12,7 +12,7 @@
 
 namespace sylar {
 
-class logger;
+class Logger;
 //日志事件
 class LogEvent {
 public:
@@ -63,7 +63,8 @@ public:
     typedef std::shared_ptr<LogFormatter> ptr;
     LogFormatter (const std::string& pattern);
 
-    std::string format(Logger::ptr logger,LogLevel::Level level, LogEvent::ptr event);
+    std::string format(std::shared_ptr<Logger> logger,LogLevel::Level level, LogEvent::ptr event);
+    std::ostream& format(std::ostream& ofs,std::shared_ptr<Logger> logger,LogLevel::Level level, LogEvent::ptr event);
     void init();
 public:
     class FormatItem {
