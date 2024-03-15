@@ -247,6 +247,8 @@ void Logger::log(LogLevel::Level level, LogEvent::ptr event) {
             for(auto& i: m_appenders) {
                i->log(self,level, event);
             }
+        } else if(m_root){
+            m_root->log(level, event);
         }
     }
 }

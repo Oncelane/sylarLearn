@@ -39,6 +39,8 @@ mutex.h
 /home/oncelane/workspace/sylar/sylar/mutex.h
 singleton.h
 /home/oncelane/workspace/sylar/sylar/singleton.h
+util.h
+/home/oncelane/workspace/sylar/sylar/util.h
 
 /home/oncelane/workspace/sylar/sylar/mutex.h
 thread

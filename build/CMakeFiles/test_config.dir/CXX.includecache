@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/oncelane/workspace/sylar/sylar/config.cc
-config.h
-/home/oncelane/workspace/sylar/sylar/config.h
-
 /home/oncelane/workspace/sylar/sylar/config.h
 memory
 -
@@ -91,4 +87,10 @@ unistd.h
 -
 pthread.h
 -
+
+/home/oncelane/workspace/sylar/tests/test_config.cc
+../sylar/config.h
+/home/oncelane/workspace/sylar/sylar/config.h
+../sylar/log.h
+/home/oncelane/workspace/sylar/sylar/log.h
 
