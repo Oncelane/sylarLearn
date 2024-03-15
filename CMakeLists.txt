@@ -5,8 +5,14 @@ project(sylar)
 set (CMAKE_VERBOSE_MAKEFILE ON)
 set (CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -o0 -g -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function")
 
-set(LIB_SRC
-    sylar/log.cc
+# set(LIB_SRC
+#     sylar/log.cc
+#     sylar/util.cc
+# )
+
+file(GLOB LIB_SRC
+    "sylar/*.h"
+    "sylar/*.cc"
 )
 
 add_library(sylar SHARED ${LIB_SRC})

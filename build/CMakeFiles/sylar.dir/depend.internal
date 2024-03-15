@@ -4,3 +4,8 @@
 CMakeFiles/sylar.dir/sylar/log.cc.o
  /home/oncelane/workspace/sylar/sylar/log.cc
  /home/oncelane/workspace/sylar/sylar/log.h
+ /home/oncelane/workspace/sylar/sylar/mutex.h
+ /home/oncelane/workspace/sylar/sylar/singleton.h
+CMakeFiles/sylar.dir/sylar/util.cc.o
+ /home/oncelane/workspace/sylar/sylar/util.cc
+ /home/oncelane/workspace/sylar/sylar/util.h

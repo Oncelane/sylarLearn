@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.cc": "cpp",
         "fstream": "cpp",
         "cmath": "cpp",
         "array": "cpp",
@@ -52,7 +53,8 @@
         "unordered_set": "cpp",
         "ratio": "cpp",
         "mutex": "cpp",
-        "thread": "cpp"
+        "thread": "cpp",
+        "cinttypes": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }
