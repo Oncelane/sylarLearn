@@ -10,7 +10,9 @@
 	{
 		"commands" : 
 		[
-			"add_library"
+			"add_library",
+			"link_directories",
+			"include_directories"
 		],
 		"files" : 
 		[
@@ -24,7 +26,25 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 18,
+				"line" : 24,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 14,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 12,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 13,
 				"parent" : 0
 			}
 		]
@@ -44,6 +64,17 @@
 					"define" : "sylar_EXPORTS"
 				}
 			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "/home/oncelane/workspace/sylar/."
+				},
+				{
+					"backtrace" : 4,
+					"path" : "/apps/oncelane/include"
+				}
+			],
 			"language" : "CXX",
 			"sourceIndexes" : 
 			[
@@ -61,6 +92,11 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-L/apps/oncelane/lib",
+				"role" : "libraryPath"
 			}
 		],
 		"language" : "CXX"

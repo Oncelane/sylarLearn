@@ -9,6 +9,12 @@ set (CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -o0 -g -std=c++11 -Wall -Wno-depr
 #     sylar/log.cc
 #     sylar/util.cc
 # )
+include_directories(.)
+include_directories(/apps/oncelane/include)
+link_directories(/apps/oncelane/lib)
+
+find_library(YAMLCPP yaml-cpp)
+message("***", ${YAMLCPP})
 
 file(GLOB LIB_SRC
     "sylar/*.h"
@@ -21,11 +27,11 @@ add_library(sylar SHARED ${LIB_SRC})
 
 add_executable(test tests/test.cc)
 add_dependencies(test sylar)
-target_link_libraries(test sylar)
+target_link_libraries(test sylar ${YAMLCPP})
 
 add_executable(test_config tests/test_config.cc)
 add_dependencies(test_config sylar)
-target_link_libraries(test_config sylar)
+target_link_libraries(test_config sylar ${YAMLCPP})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

@@ -14,7 +14,7 @@ public:
     ConfigVarBase( const std::string& name, const std::string& description = "")
         :m_name(name)
         ,m_description(description) {
-
+            std::transform(m_name.begin(), m_name.end(),m_name.begin(), ::tolower);
         }
     virtual ~ConfigVarBase();
 
@@ -56,7 +56,7 @@ public:
         try{
             m_val = boost::lexical_cast<T>(val);
         }catch (std::exception& e) {
-            SYLAR_LOG_ERROR(SYLAR_LOG_ROOT()) << "ConfigVar::toString execption"
+            SYLAR_LOG_ERROR(SYLAR_LOG_ROOT()) << "ConfigVar::fromString execption"
                 << e.what() << " convert string to" << typeid(m_val).name() << " to stiring"; 
         }
             return false;
@@ -78,11 +78,11 @@ public:
         const T& default_value, const std::string& description = "") {
             auto temp = Lookup<T>(name);
             if(temp) {
-                SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << "Lookup name=" << name << " exists";
+                SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << "Lookup name =" << name << " exists";
                 return temp;
             }
 
-            if(name.find_first_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ._0123456789")
+            if(name.find_first_not_of("abcdefghijklmnopqrstuvwxyz._0123456789")
                 != std::string::npos) {
                     SYLAR_LOG_ERROR(SYLAR_LOG_ROOT()) << "Lookup name invalid" << name;
                     throw std::invalid_argument(name);
@@ -101,7 +101,9 @@ public:
         }
         return std::dynamic_pointer_cast<ConfigVar<T> >(it->second);
     }
+    static void LoadFromYaml(const YAML::Node& node);
 
+    static ConfigVarBase::ptr LookupBase(const std::string& name);
 private:
     static ConfigVarMap s_dates;
 };
