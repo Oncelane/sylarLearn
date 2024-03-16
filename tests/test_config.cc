@@ -4,6 +4,12 @@
 sylar::ConfigVar<int>::ptr g_int_value_confg =
     sylar::Config::Lookup("system.port", (int)8080,"system port");
 
+sylar::ConfigVar<float>::ptr g_float_value_confg =
+    sylar::Config::Lookup("system.value", (float)14.2f,"system port");
+
+sylar::ConfigVar<std::vector<int> >::ptr g_int_vec_value_confg =
+    sylar::Config::Lookup("system.int_vec", std::vector<int>{1,2},"system port");
+
 
 void print_yaml(const YAML::Node& node, int level) {
      if(node.IsScalar()) {
@@ -33,14 +39,22 @@ void test_yaml() {
 
 void test_config() {
     SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) <<"before:" << g_int_value_confg->getValue();
-    SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) <<"before:" << g_int_value_confg->toString();
+    SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) <<"before:" << g_float_value_confg->toString();
+    auto v = g_int_vec_value_confg->getValue();
+    for(auto& i : v) {
+        SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << "befor:" << "int_vec:" << i;
+    }
 
     YAML::Node root = YAML::LoadFile("/home/oncelane/workspace/sylar/bin/conf/log.yml");
     sylar::Config::LoadFromYaml(root);
 
     SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) <<"after:" << g_int_value_confg->getValue();
     SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) <<"after:" << g_int_value_confg->toString();
-
+    
+    v = g_int_vec_value_confg->getValue();
+    for(auto& i : v) {
+        SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << "after:" << "int_vec:" << i;
+    }
 }
 int main(int argc, char** argv) {
     SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << g_int_value_confg->getValue();
