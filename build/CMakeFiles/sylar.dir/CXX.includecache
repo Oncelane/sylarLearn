@@ -23,6 +23,16 @@ string
 -
 log.h
 /home/oncelane/workspace/sylar/sylar/log.h
+map
+-
+set
+-
+list
+-
+unordered_map
+-
+unordered_set
+-
 
 /home/oncelane/workspace/sylar/sylar/log.h
 string
