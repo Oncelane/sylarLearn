@@ -33,6 +33,8 @@ unordered_map
 -
 unordered_set
 -
+functional
+-
 
 /home/oncelane/workspace/sylar/sylar/log.h
 string

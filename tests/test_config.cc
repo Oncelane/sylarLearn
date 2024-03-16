@@ -23,7 +23,10 @@ sylar::ConfigVar<std::map<std::string, int> >::ptr g_int_map_value_confg =
     sylar::Config::Lookup("system.str_int_map", std::map<std::string, int>{{"China",1},{"Ameriacn",2}},"system string int map");
 
 sylar::ConfigVar<std::unordered_map<std::string, int> >::ptr g_int_umap_value_confg =
-    sylar::Config::Lookup("system.str_int_umap", std::unordered_map<std::string, int>{{"China",1},{"Ameriacn",2}},"system string int umap");
+    sylar::Config::Lookup("system.str_int_umap", std::unordered_map<std::string, int>{{"China2",1},{"Ameriacn2",2}},"system string int umap");
+
+// sylar::ConfigVar<std::unordered_map<std::string, Person> >::ptr g_person_map =
+//     sylar::Config::Lookup("system.person_map", std::unordered_map<std::string, int>{{"China",1},{"Ameriacn",2}},"system string int umap");
 
 
 void print_yaml(const YAML::Node& node, int level) {
@@ -98,13 +101,101 @@ void test_config() {
 
 #undef XX
 #undef XX_M
+
 }
+
+class Person {
+public:
+    Person(){}
+    std::string m_name;
+    int m_age =0;
+    bool m_sex =0;
+
+    std::string toString() const {
+        std::stringstream ss;
+        ss << "[Person name =" << m_name
+            << " age=" << m_age
+            << " sex=" << m_sex
+            << "]";
+        return ss.str();
+    }
+
+    bool operator== (const Person& oth) const{
+        return m_name == oth.m_name && m_age == oth.m_age && m_sex == oth.m_sex;
+    }
+};
+
+namespace sylar {
+//---------自定义模板--------
+template<>
+class LexicalCast<std::string, Person > {
+public:
+    Person operator() (const std::string& v) {
+        YAML::Node node = YAML::Load(v);
+        Person p;
+        p.m_name = node["name"].as<std::string>();
+        p.m_age  = node["age"].as<int>();
+        p.m_sex = node["sex"].as<bool>();
+        return p; 
+    }
+};
+
+template<>
+class LexicalCast<Person, std::string> {
+public:
+    std::string operator() (const Person & p) {
+        YAML::Node node;
+        node["name"] =  p.m_name;
+        node["age"] = p.m_age;
+        node["sex"] = p.m_sex;
+        std::stringstream ss;
+        ss << node;
+        return ss.str();
+    }
+};
+
+
+
+}
+
+
+sylar::ConfigVar<Person>::ptr g_person = sylar::Config::Lookup("class.person", Person(), "system person");
+
+
+
+void test_class() {
+    SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << g_person->getValue().toString() << " - " << g_person->toString();
+
+#define XX_PM(g_var, prefix) \
+{\
+    auto m = g_person_map->getValue();\
+    for(auto& i : m) {\
+        SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << #prefix ": {" << i.first <<  " - " << i.second.toString() << "}";\
+    }\
+    SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << #prefix  ": size=" << m.size();\
+} 
+
+
+    g_person->addListener(10,[](const Person& old_value, const Person&new_value ) {
+         SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << "old_value =" << old_value.toString()
+                << " new_value=" << new_value.toString();
+    });
+
+    // XX_PM(g_person_map, "calss.map before");
+    YAML::Node root = YAML::LoadFile("/home/oncelane/workspace/sylar/bin/conf/log.yml");
+    sylar::Config::LoadFromYaml(root);
+    SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << g_person->getValue().toString() << " - " << g_person->toString();
+    // XX_PM(g_person_map, "calss.map after");
+}
+
+
 int main(int argc, char** argv) {
     SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << g_int_value_confg->getValue();
     SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << g_int_value_confg->toString();
 
 
     // test_yaml();
-    test_config();
+    // test_config();
+    test_class();
     return 0;
 }

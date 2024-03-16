@@ -27,6 +27,12 @@ system:
           Ameriacn: 102
           Japan: 103
     str_int_umap:
-          China: 101
-          Ameriacn: 102
+          China2: 101
+          Ameriacn2: 102
           Japan: 103
+class:
+      person:
+          name: oncelane
+          age: 20
+          sex: true
+
