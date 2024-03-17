@@ -14,6 +14,7 @@
 #include <time.h>
 #include <string.h>
 #include <stdarg.h>
+#include <yaml-cpp/yaml.h>
 #include "mutex.h"
 #include "singleton.h"
 #include "util.h"
@@ -31,7 +32,7 @@
 #define SYLAR_LOG_FATAL(logger) SYLAR_LOG_LEVEL(logger, sylar::LogLevel::FATAL)
 
 #define SYLAR_LOG_ROOT() sylar::LoggerMgr::GetInstance()->getRoot()
-
+#define SYLAR_LOG_NAME(name) sylar::LoggerMgr::GetInstance() ->getLogger(name)
 /**
  * @brief 使用格式化方式将日志级别level的日志写入到logger
  */
@@ -69,6 +70,7 @@
 namespace sylar {
 
 class Logger;
+class LoggerManager;
 
 //日志类型
 class LogLevel {
@@ -82,7 +84,8 @@ public:
         FATAL
     };
 
-    static const char* Tostring (LogLevel::Level level);
+    static const char* ToString (LogLevel::Level level);
+    static LogLevel::Level FromString (const std::string& str);
 };
 
 
@@ -193,6 +196,9 @@ public:
     //重置日志等级
     void setLevel(LogLevel::Level level) {m_level= level;}
 
+    //日志输出目标的配置转成YAML String
+    virtual std::string toYamlString() = 0;
+
 protected:
     //日志等级默认为最低级
     LogLevel::Level m_level = LogLevel::DEBUG;
@@ -224,7 +230,7 @@ public:
     //删除日志输出目标
     void delAppender(LogAppender::ptr appender);
     //清空日志输出目标
-    void clearAppender();
+    void clearAppenders();
 
 
     //修改日志等级
@@ -243,6 +249,11 @@ public:
 
     const std::string& getName() const {return m_name;}
 
+    /**
+     * @brief 将日志器的配置转成YAML String
+     */
+    std::string toYamlString();
+
 private:
     std::string m_name;                         //日志名称
     LogLevel::Level m_level;                    //日志等级
@@ -256,7 +267,7 @@ class StdoutLogAppender : public LogAppender {
 public:
     typedef std::shared_ptr<StdoutLogAppender> ptr;
     void log(Logger::ptr logger, LogLevel::Level level, LogEvent::ptr event) override;
-private:
+    std::string toYamlString() override;
 
 };
 
@@ -269,6 +280,7 @@ public:
 
     FileLogAppender(const std::string& filename);
     void log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) override;
+    std::string toYamlString() override;
     //重新打开日志文件
     bool ropen();
 private:
@@ -290,6 +302,7 @@ public:
 
     Logger::ptr getRoot() const {return m_root;}
 
+    std::string toYamlString();
     
 
 private:

@@ -2,11 +2,11 @@
 
 namespace sylar {
 
-Config::ConfigVarMap Config::s_dates;
+// Config::ConfigVarMap Config::s_datas;
 ConfigVarBase::~ConfigVarBase() {}
 ConfigVarBase::ptr  Config::LookupBase(const std::string& name) {
-    auto it = s_dates.find(name);
-    return it == s_dates.end() ? nullptr : it->second;
+    auto it = Config::GetDatas().find(name);
+    return it == Config::GetDatas().end() ? nullptr : it->second;
 }
 
 static void ListAllMember(const std::string& prefix,

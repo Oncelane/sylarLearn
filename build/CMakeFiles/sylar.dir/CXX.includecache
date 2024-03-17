@@ -6,35 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/oncelane/workspace/sylar/sylar/config.cc
-config.h
-/home/oncelane/workspace/sylar/sylar/config.h
-
-/home/oncelane/workspace/sylar/sylar/config.h
-memory
--
-sstream
--
-boost/lexical_cast.hpp
--
-yaml-cpp/yaml.h
--
-string
--
+/home/oncelane/workspace/sylar/sylar/log.cc
 log.h
 /home/oncelane/workspace/sylar/sylar/log.h
-map
--
-set
--
-list
--
-unordered_map
--
-unordered_set
--
-functional
--
 
 /home/oncelane/workspace/sylar/sylar/log.h
 string
@@ -64,6 +38,8 @@ time.h
 string.h
 -
 stdarg.h
+-
+yaml-cpp/yaml.h
 -
 mutex.h
 /home/oncelane/workspace/sylar/sylar/mutex.h

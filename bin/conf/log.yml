@@ -2,37 +2,14 @@ logs:
     - name: root
       level: info
       formatter: '%d%T%m%n'
-      appender: 
-              - type: FilelogAppender
-                file: log.txt
+      appenders: 
+              - type: FileLogAppender
+                file: root.txt
               - type: StdoutLogAppender
     - name: system
       level: debug
       formatter: '%d%T%m%n'
-      appender:
-              - type: FilelogAppender
-                file: log.txt
+      appenders:
+              - type: FileLogAppender
+                file: system.txt
               - type: StdoutLogAppender
-system:
-    port: 9090
-    value: 2134
-    int_vec:
-          - 10
-          - 30
-    int_list: [20, 40, 50]
-    int_set: [100, 100, 100, 200]
-    int_uset: [300, 100, 100, 100, 200]
-    str_int_map:
-          China: 101
-          Ameriacn: 102
-          Japan: 103
-    str_int_umap:
-          China2: 101
-          Ameriacn2: 102
-          Japan: 103
-class:
-      person:
-          name: oncelane
-          age: 20
-          sex: true
-

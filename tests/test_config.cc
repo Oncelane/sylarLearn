@@ -1,5 +1,7 @@
 #include "../sylar/config.h"
 #include "../sylar/log.h"
+#include <iostream>
+
 
 sylar::ConfigVar<int>::ptr g_int_value_confg =
     sylar::Config::Lookup("system.port", (int)8080,"system port");
@@ -50,7 +52,7 @@ void print_yaml(const YAML::Node& node, int level) {
 
 
 void test_yaml() {
-    YAML::Node node = YAML::LoadFile("/home/oncelane/workspace/sylar/bin/conf/log.yml");
+    YAML::Node node = YAML::LoadFile("/home/oncelane/workspace/sylar/bin/conf/test.yml");
     print_yaml(node, 0);
     // SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << root;
 }
@@ -84,7 +86,7 @@ void test_config() {
     XX_M(g_int_map_value_confg, int_int_map, before);
     XX_M(g_int_umap_value_confg, int_int_umap, before);
 
-    YAML::Node root = YAML::LoadFile("/home/oncelane/workspace/sylar/bin/conf/log.yml");
+    YAML::Node root = YAML::LoadFile("/home/oncelane/workspace/sylar/bin/conf/test.yml");
     sylar::Config::LoadFromYaml(root);
 
     SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) <<"after:" << g_int_value_confg->getValue();
@@ -182,12 +184,26 @@ void test_class() {
     });
 
     // XX_PM(g_person_map, "calss.map before");
-    YAML::Node root = YAML::LoadFile("/home/oncelane/workspace/sylar/bin/conf/log.yml");
+    YAML::Node root = YAML::LoadFile("/home/oncelane/workspace/sylar/bin/conf/test.yml");
     sylar::Config::LoadFromYaml(root);
     SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << g_person->getValue().toString() << " - " << g_person->toString();
     // XX_PM(g_person_map, "calss.map after");
 }
 
+
+void test_log() {
+
+    std::cout << sylar::LoggerMgr::GetInstance()->toYamlString() << std::endl;
+
+    YAML::Node root = YAML::LoadFile("/home/oncelane/workspace/sylar/bin/conf/log.yml");
+    sylar::Config::LoadFromYaml(root);
+    std::cout << "======" << std::endl;
+    std::stringstream ss;
+    ss << root;
+    std::cout << ss.str() << std::endl;
+    std::cout << "======" << std::endl;
+    std::cout << sylar::LoggerMgr::GetInstance()->toYamlString() << std::endl;
+}
 
 int main(int argc, char** argv) {
     SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << g_int_value_confg->getValue();
@@ -196,6 +212,7 @@ int main(int argc, char** argv) {
 
     // test_yaml();
     // test_config();
-    test_class();
+    // test_class();
+    test_log();
     return 0;
 }
