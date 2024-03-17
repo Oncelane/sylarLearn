@@ -61,5 +61,6 @@
         "source_location": "cpp",
         "valarray": "cpp"
     },
-    "C_Cpp.errorSquiggles": "enabled"
+    "C_Cpp.errorSquiggles": "enabled",
+    "cmake.configureOnOpen": false
 }
