@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/oncelane/workspace/sylar/sylar/log.cc
-log.h
-/home/oncelane/workspace/sylar/sylar/log.h
-
 /home/oncelane/workspace/sylar/sylar/log.h
 string
 -
@@ -68,6 +64,26 @@ list
 
 /home/oncelane/workspace/sylar/sylar/singleton.h
 memory
+-
+
+/home/oncelane/workspace/sylar/sylar/thread.cc
+thread.h
+/home/oncelane/workspace/sylar/sylar/thread.h
+log.h
+/home/oncelane/workspace/sylar/sylar/log.h
+
+/home/oncelane/workspace/sylar/sylar/thread.h
+../sylar/mutex.h
+/home/oncelane/workspace/sylar/sylar/mutex.h
+thread
+-
+functional
+-
+memory
+-
+pthread.h
+-
+sys/types.h
 -
 
 /home/oncelane/workspace/sylar/sylar/util.h

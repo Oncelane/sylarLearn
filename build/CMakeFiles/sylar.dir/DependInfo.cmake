@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/oncelane/workspace/sylar/sylar/config.cc" "/home/oncelane/workspace/sylar/build/CMakeFiles/sylar.dir/sylar/config.cc.o"
   "/home/oncelane/workspace/sylar/sylar/log.cc" "/home/oncelane/workspace/sylar/build/CMakeFiles/sylar.dir/sylar/log.cc.o"
+  "/home/oncelane/workspace/sylar/sylar/thread.cc" "/home/oncelane/workspace/sylar/build/CMakeFiles/sylar.dir/sylar/thread.cc.o"
   "/home/oncelane/workspace/sylar/sylar/util.cc" "/home/oncelane/workspace/sylar/build/CMakeFiles/sylar.dir/sylar/util.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

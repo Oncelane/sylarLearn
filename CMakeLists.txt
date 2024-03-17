@@ -16,26 +16,41 @@ include_directories(/apps/oncelane/include)
 link_directories(/apps/oncelane/lib)
 
 
-
-find_library(YAMLCPP yaml-cpp)
-message("***", ${YAMLCPP})
-
 file(GLOB LIB_SRC
     "sylar/*.h"
     "sylar/*.cc"
 )
 
 add_library(sylar SHARED ${LIB_SRC})
+
+find_library(YAMLCPP yaml-cpp)
+find_library(PTHREAD pthread)
+
+set(LIBS 
+        sylar
+        pthread
+        yaml-cpp)
+
+message("***", ${LIBS})
+
+
+
+
 #add_library(sylar_static STATIC ${LIB_SRC})
 #SET_TARGET_PROPERTIES (sylar_static PROPERTIES OUTPUT_NAME "sylar")
 
+
 add_executable(test tests/test.cc)
 add_dependencies(test sylar)
-target_link_libraries(test sylar ${YAMLCPP})
+target_link_libraries(test sylar ${LIBS})
 
 add_executable(test_config tests/test_config.cc)
 add_dependencies(test_config sylar)
-target_link_libraries(test_config sylar ${YAMLCPP})
+target_link_libraries(test_config sylar ${LIBS})
+
+add_executable(test_thread tests/test_thread.cc)
+add_dependencies(test_thread sylar)
+target_link_libraries(test_thread sylar ${LIBS})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

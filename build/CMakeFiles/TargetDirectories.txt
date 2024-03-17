@@ -1,5 +1,6 @@
 /home/oncelane/workspace/sylar/build/CMakeFiles/rebuild_cache.dir
 /home/oncelane/workspace/sylar/build/CMakeFiles/test_config.dir
 /home/oncelane/workspace/sylar/build/CMakeFiles/edit_cache.dir
+/home/oncelane/workspace/sylar/build/CMakeFiles/test_thread.dir
 /home/oncelane/workspace/sylar/build/CMakeFiles/test.dir
 /home/oncelane/workspace/sylar/build/CMakeFiles/sylar.dir
