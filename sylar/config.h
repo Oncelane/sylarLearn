@@ -1,4 +1,5 @@
 #pragma once
+
 #include "log.h"
 #include "util.h"
 
@@ -452,7 +453,7 @@ public:
             if(it != GetDatas().end()) {
                 auto tmp = std::dynamic_pointer_cast<ConfigVar<T> >(it->second);\
                 if(tmp) {
-                    // SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << "Lookup name =" << name << " exists";
+                    SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << "Lookup name =" << name << " exists";
                     return tmp;
                 } else {
                     SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << "Lookup name =" << name << " exists but type not"
@@ -496,7 +497,7 @@ sylar::ConfigVar<std::set<LogDefine> >::ptr g_log_defines =
 
 struct LogIniter {
     LogIniter() {
-        g_log_defines->addListener(2332,[](const std::set<LogDefine>& old_value,
+        g_log_defines->addListener(1513,[](const std::set<LogDefine>& old_value,
                     const std::set<LogDefine>& new_value){
             SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << "on_logger_conf_changed";
             for(auto& i : new_value) {

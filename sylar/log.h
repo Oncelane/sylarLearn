@@ -15,9 +15,10 @@
 #include <string.h>
 #include <stdarg.h>
 #include <yaml-cpp/yaml.h>
-#include "mutex.h"
+#include "thread.h"
 #include "singleton.h"
 #include "util.h"
+
 
 #define SYLAR_LOG_LEVEL(logger, level) \
     if(logger->getLevel() <= level) \
@@ -179,6 +180,7 @@ class LogAppender {
 friend class Logger;
 public:
     typedef std::shared_ptr<LogAppender> ptr;
+    typedef Mutex MutexType;
     virtual ~LogAppender() {}
 
     virtual void log(std::shared_ptr<Logger> logger, LogLevel::Level level, LogEvent::ptr event) = 0;
@@ -206,6 +208,8 @@ protected:
     bool m_hasFormatter = false;
     //日志格式器
     LogFormatter::ptr m_formatter;
+    //
+    MutexType m_mutex;
 };
 
 
@@ -213,7 +217,8 @@ protected:
 class Logger :public std::enable_shared_from_this<Logger>{
 friend class LoggerManager;
 public:
-    typedef std::shared_ptr<Logger> ptr;  
+    typedef std::shared_ptr<Logger> ptr;
+    typedef Mutex MutexType;
     Logger(const std::string& name = "root");
 
     //写日志
@@ -260,6 +265,7 @@ private:
     std::list<LogAppender::ptr> m_appenders;    //日志输出目标列表
     LogFormatter::ptr m_formatter;              //日志格式器
     Logger::ptr m_root;
+    MutexType m_mutex; 
 };
 
 //输出到控制台的appender
@@ -294,6 +300,7 @@ private:
 
 class LoggerManager {
 public:
+    typedef Mutex MutexType;
     LoggerManager();
 
     Logger::ptr getLogger(const std::string& name);
@@ -306,7 +313,7 @@ public:
     
 
 private:
-    
+    MutexType m_mutex;
     Logger::ptr m_root;
     std::map<std::string, Logger::ptr> m_loggers;
 

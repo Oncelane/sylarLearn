@@ -6,5 +6,6 @@ CMakeFiles/test_config.dir/tests/test_config.cc.o
  /home/oncelane/workspace/sylar/sylar/log.h
  /home/oncelane/workspace/sylar/sylar/mutex.h
  /home/oncelane/workspace/sylar/sylar/singleton.h
+ /home/oncelane/workspace/sylar/sylar/thread.h
  /home/oncelane/workspace/sylar/sylar/util.h
  /home/oncelane/workspace/sylar/tests/test_config.cc

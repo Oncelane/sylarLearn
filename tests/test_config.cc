@@ -178,7 +178,7 @@ void test_class() {
 } 
 
 
-    g_person->addListener(10,[](const Person& old_value, const Person&new_value ) {
+    g_person->addListener(46468,[](const Person& old_value, const Person&new_value ) {
          SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << "old_value =" << old_value.toString()
                 << " new_value=" << new_value.toString();
     });
@@ -214,5 +214,9 @@ int main(int argc, char** argv) {
     // test_config();
     // test_class();
     test_log();
+    SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << g_int_value_confg->getValue();
+    SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << g_int_value_confg->getValue();
+    SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << g_int_value_confg->getValue();
+    SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << g_int_value_confg->toString();
     return 0;
 }
