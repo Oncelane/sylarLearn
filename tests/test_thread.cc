@@ -13,7 +13,7 @@ void fun1() {
         << " this.id" << sylar::Thread::GetThis()->getId();
     for(int i = 0; i < 100000; ++i) {
         // sylar::RWMutex::WriteLock lock(s_mutex);
-        sylar::Mutex::Lock lock(s_mutex);
+        // sylar::Mutex::Lock lock(s_mutex);
         ++count;
     }
 }
@@ -33,7 +33,7 @@ void fun3(){
     }
 }
 
-int main(int argc, char** args) {
+void test_thread_print() {
     SYLAR_LOG_INFO(g_logger) << "thread test begin";
 
     YAML::Node node = YAML::LoadFile("/home/oncelane/workspace/sylar/bin/conf/test_log.yml");
@@ -49,6 +49,21 @@ int main(int argc, char** args) {
     for(size_t i = 0; i < thrs.size(); ++i) {
         thrs[i]->join();
     }
+    SYLAR_LOG_INFO(g_logger) << "thread test end";
+    SYLAR_LOG_INFO(g_logger) << "count=" << count;
+}
+
+int main(int argc, char** args) {
+    SYLAR_LOG_INFO(g_logger) << "thread test begin";
+    std::vector<sylar::Thread::ptr> thrs;
+    for(int i = 0; i < 5; ++i) {
+        sylar::Thread::ptr thr1(new sylar::Thread(&fun1, "name_" + std::to_string(i)));
+        thrs.push_back(thr1);
+    }
+    for(size_t i =0; i < thrs.size(); ++i) {
+        thrs[i]->join();
+    }
+
     SYLAR_LOG_INFO(g_logger) << "thread test end";
     SYLAR_LOG_INFO(g_logger) << "count=" << count;
     return 0;

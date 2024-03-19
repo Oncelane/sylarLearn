@@ -11,6 +11,8 @@ log.h
 /home/oncelane/workspace/sylar/sylar/log.h
 util.h
 /home/oncelane/workspace/sylar/sylar/util.h
+thread.h
+/home/oncelane/workspace/sylar/sylar/thread.h
 memory
 -
 sstream

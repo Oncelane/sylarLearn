@@ -11,6 +11,8 @@ log.h
 /home/oncelane/workspace/sylar/sylar/log.h
 util.h
 /home/oncelane/workspace/sylar/sylar/util.h
+thread.h
+/home/oncelane/workspace/sylar/sylar/thread.h
 memory
 -
 sstream
@@ -72,6 +74,16 @@ singleton.h
 util.h
 /home/oncelane/workspace/sylar/sylar/util.h
 
+/home/oncelane/workspace/sylar/sylar/marco.h
+string.h
+-
+assert.h
+-
+execinfo.h
+-
+util.h
+/home/oncelane/workspace/sylar/sylar/util.h
+
 /home/oncelane/workspace/sylar/sylar/mutex.h
 thread
 -
@@ -105,6 +117,8 @@ util.h
 /home/oncelane/workspace/sylar/sylar/util.h
 thread.h
 /home/oncelane/workspace/sylar/sylar/thread.h
+marco.h
+/home/oncelane/workspace/sylar/sylar/marco.h
 
 /home/oncelane/workspace/sylar/sylar/thread.h
 ../sylar/mutex.h

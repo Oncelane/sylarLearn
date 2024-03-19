@@ -1,4 +1,31 @@
-2024-03-18 08:19:54	[root]	8080
-2024-03-18 08:19:54	[root]	8080
-2024-03-18 08:19:54	[root]	8080
-2024-03-18 08:19:54	[root]	8080
+2024-03-18 14:34:55	[root]	name=class.person description=system person typedename=6Person value=name: ""
+age: 0
+sex: false
+2024-03-18 14:34:55	[root]	name=logs description=logs config typedename=St3setIN5sylar9LogDefineESt4lessIS1_ESaIS1_EE value=- name: root
+  level: INFO
+  formatter: "%d%T[%c]%T%m%n"
+  appenders:
+    - type: FileLogAppender
+      file: newroot.txt
+    - type: StdoutLogAppender
+- name: system
+  level: INFO
+  formatter: "%d%T[%c]%T%m%n"
+  appenders:
+    - type: FileLogAppender
+      file: newsystem.txt
+    - type: StdoutLogAppender
+2024-03-18 14:34:55	[root]	name=system.int_list description=system int list typedename=NSt7__cxx114listIiSaIiEEE value=- 1
+- 2
+2024-03-18 14:34:55	[root]	name=system.int_set description=system int set typedename=St3setIiSt4lessIiESaIiEE value=- 1
+- 2
+2024-03-18 14:34:55	[root]	name=system.int_uset description=system int uset typedename=St13unordered_setIiSt4hashIiESt8equal_toIiESaIiEE value=- 2
+- 1
+2024-03-18 14:34:55	[root]	name=system.int_vec description=system int vec typedename=St6vectorIiSaIiEE value=- 1
+- 2
+2024-03-18 14:34:55	[root]	name=system.port description=system port typedename=i value=8080
+2024-03-18 14:34:55	[root]	name=system.str_int_map description=system string int map typedename=St3mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiSt4lessIS5_ESaISt4pairIKS5_iEEE value=Ameriacn: 2
+China: 1
+2024-03-18 14:34:55	[root]	name=system.str_int_umap description=system string int umap typedename=St13unordered_mapINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEiSt4hashIS5_ESt8equal_toIS5_ESaISt4pairIKS5_iEEE value=Ameriacn2: 2
+China2: 1
+2024-03-18 14:34:55	[root]	name=system.value description=system port typedename=f value=14.1999998

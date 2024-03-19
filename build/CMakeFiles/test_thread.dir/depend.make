@@ -3,6 +3,7 @@
 
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../sylar/config.h
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../sylar/log.h
+CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../sylar/marco.h
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../sylar/mutex.h
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../sylar/singleton.h
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: ../sylar/sylar.h
