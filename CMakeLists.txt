@@ -56,5 +56,9 @@ add_executable(test_util tests/test_util.cc)
 add_dependencies(test_util sylar)
 target_link_libraries(test_util sylar ${LIBS})
 
+add_executable(test_fiber tests/test_fiber.cc)
+add_dependencies(test_fiber sylar)
+target_link_libraries(test_fiber sylar ${LIBS})
+
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

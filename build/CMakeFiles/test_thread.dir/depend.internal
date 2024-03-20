@@ -3,6 +3,7 @@
 
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o
  /home/oncelane/workspace/sylar/sylar/config.h
+ /home/oncelane/workspace/sylar/sylar/fiber.h
  /home/oncelane/workspace/sylar/sylar/log.h
  /home/oncelane/workspace/sylar/sylar/marco.h
  /home/oncelane/workspace/sylar/sylar/mutex.h

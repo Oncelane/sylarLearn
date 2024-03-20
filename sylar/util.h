@@ -6,8 +6,7 @@
  * @date 2019-05-27
  * @copyright Copyright (c) 2019年 sylar.yin All rights reserved (www.sylar.top)
  */
-#ifndef __SYLAR_UTIL_H__
-#define __SYLAR_UTIL_H__
+#pragma once
 
 #include <cxxabi.h>
 #include <pthread.h>
@@ -90,4 +89,3 @@ public:
 };
 
 }
-#endif

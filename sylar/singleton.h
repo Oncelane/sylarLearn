@@ -1,6 +1,6 @@
 //单例模式封装
-
-#pragma once
+#ifndef __SYLAR_SINGLE_H__
+#define __SYLAR_SINGLE_H__
 #include <memory>
 
 namespace sylar {
@@ -56,3 +56,5 @@ public:
 
 
 }
+
+#endif

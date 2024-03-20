@@ -1,5 +1,7 @@
 #include "log.h"
-
+#include "config.h"
+#include "util.h"
+#include "marco.h"
 
 namespace sylar {
 
@@ -571,6 +573,79 @@ std::string LoggerManager::toYamlString() {
     return ss.str();
 }
 
+
+sylar::ConfigVar<std::set<LogDefine> >::ptr g_log_defines =
+    sylar::Config::Lookup("logs", std::set<LogDefine>(), "logs config");
+
+struct LogIniter {
+    LogIniter() {
+        g_log_defines->addListener([](const std::set<LogDefine>& old_value,
+                    const std::set<LogDefine>& new_value){
+            SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << "on_logger_conf_changed";
+            for(auto& i : new_value) {
+                auto it = old_value.find(i);
+                sylar::Logger::ptr logger;
+                if(it == old_value.end()) {
+                    //新增logger
+                    logger = SYLAR_LOG_NAME(i.name);
+                } else {
+                    if(!(i == *it)) {
+                        //修改的logger
+                        logger = SYLAR_LOG_NAME(i.name);
+                    } else {
+                        continue;
+                    }
+                }
+                logger->setLevel(i.level);
+                //std::cout << "** " << i.name << " level=" << i.level
+                //<< "  " << logger << std::endl;
+                if(!i.formatter.empty()) {
+                    logger->setFormatter(i.formatter);
+                }
+
+                logger->clearAppenders();
+                for(auto& a : i.appenders) {
+                    sylar::LogAppender::ptr ap;
+                    if(a.type == 1) {
+                        ap.reset(new FileLogAppender(a.file));
+                    } else if(a.type == 2) {
+                        // if(!sylar::EnvMgr::GetInstance()->has("d")) {
+                        //     ap.reset(new StdoutLogAppender);
+                        // } else {
+                        //     continue;
+                        // }
+                        //
+                        ap.reset(new StdoutLogAppender);
+                        //
+                    }
+                    ap->setLevel(a.level);
+                    if(!a.formatter.empty()) {
+                        LogFormatter::ptr fmt(new LogFormatter(a.formatter));
+                        if(!fmt->isError()) {
+                            ap->setFormatter(fmt);
+                        } else {
+                            std::cout << "log.name=" << i.name << " appender type=" << a.type
+                                      << " formatter=" << a.formatter << " is invalid" << std::endl;
+                        }
+                    }
+                    logger->addAppender(ap);
+                }
+            }
+
+            for(auto& i : old_value) {
+                auto it = new_value.find(i);
+                if(it == new_value.end()) {
+                    //删除logger
+                    auto logger = SYLAR_LOG_NAME(i.name);
+                    logger->setLevel((LogLevel::Level)0);
+                    logger->clearAppenders();
+                }
+            }
+        });
+    }
+};
+
+static sylar::LogIniter __log_init;
 
 void LoggerManager::init() {
 

@@ -324,4 +324,3 @@ typedef sylar::Singleton<LoggerManager> LoggerMgr;
 
 
 }
-

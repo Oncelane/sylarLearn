@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../sylar/mutex.h"
+#include "mutex.h"
 
 #include <thread>
 #include <functional>

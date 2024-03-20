@@ -67,7 +67,7 @@ memory
 -
 
 /home/oncelane/workspace/sylar/sylar/thread.h
-../sylar/mutex.h
+mutex.h
 /home/oncelane/workspace/sylar/sylar/mutex.h
 thread
 -

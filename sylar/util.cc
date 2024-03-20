@@ -1,5 +1,5 @@
 
-#include "util.h"
+
 #include <execinfo.h>
 #include <sys/time.h>
 #include <dirent.h>
@@ -12,7 +12,8 @@
 #include <google/protobuf/unknown_field_set.h>
 
 #include "log.h"
-
+#include "fiber.h"
+#include "util.h"
 namespace sylar {
 
 static sylar::Logger::ptr g_logger = SYLAR_LOG_NAME("system");
@@ -21,8 +22,8 @@ pid_t GetThreadId() {
     return syscall(SYS_gettid);
 }
 
-uint32_t GetFiberId() {
-    return 0;
+uint32_t GetFiberId(){
+    return sylar::Fiber::GetFiberId();
 }
 
 static std::string demangle(const char* str) {

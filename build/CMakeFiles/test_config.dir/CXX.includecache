@@ -7,12 +7,6 @@
 #IncludeRegexTransform: 
 
 /home/oncelane/workspace/sylar/sylar/config.h
-log.h
-/home/oncelane/workspace/sylar/sylar/log.h
-util.h
-/home/oncelane/workspace/sylar/sylar/util.h
-thread.h
-/home/oncelane/workspace/sylar/sylar/thread.h
 memory
 -
 sstream
@@ -35,6 +29,12 @@ unordered_set
 -
 functional
 -
+thread.h
+/home/oncelane/workspace/sylar/sylar/thread.h
+log.h
+/home/oncelane/workspace/sylar/sylar/log.h
+util.h
+/home/oncelane/workspace/sylar/sylar/util.h
 
 /home/oncelane/workspace/sylar/sylar/log.h
 string
@@ -97,7 +97,7 @@ memory
 -
 
 /home/oncelane/workspace/sylar/sylar/thread.h
-../sylar/mutex.h
+mutex.h
 /home/oncelane/workspace/sylar/sylar/mutex.h
 thread
 -
