@@ -6,24 +6,28 @@
 
 
 namespace sylar {
-class Fiber : public std::enable_shared_from_this<Fiber>{
 
+class Scheduler;
+
+class Fiber : public std::enable_shared_from_this<Fiber>{
+friend Scheduler;
 public:
     // std::shared_ptr<Fiber> ptr;
     typedef std::shared_ptr<Fiber> ptr;
     enum State {
-        INIT,
-        HOLD,
-        EXEC,
-        TERM,
-        READY
+        INIT, //初始化
+        HOLD, //暂停
+        EXEC, //执行
+        TERM, //结束
+        READY, //可执行
+        EXCEPT //异常
     }; 
 
 private:
     Fiber();
 
 public:
-    Fiber(std::function<void()> cb, size_t stacksize = 0);
+    Fiber(std::function<void()> cb, size_t stacksize = 0, bool use_caller = false);
     ~Fiber();
     //重置协程函数，重置状态
     //INIT, TERM
@@ -32,6 +36,11 @@ public:
     void swapIn();
     //切换到后台执行
     void swapOut();
+
+    void call();
+    void back();
+
+    State getState() const {return m_state;}
 
     uint64_t getId() const {return m_id;}
 public:
@@ -47,6 +56,7 @@ public:
     static uint64_t TotalFibers();
     
     static void MainFunc();
+    static void CallerMainFunc();
     static uint64_t GetFiberId();
 private:
     uint64_t m_id = 0;

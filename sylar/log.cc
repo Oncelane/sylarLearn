@@ -98,6 +98,14 @@ public:
     }
 };
 
+class ThreadNameFormatItem: public LogFormatter::FormatItem { 
+public:
+    ThreadNameFormatItem(const std::string& str = "") {}
+    void format(std::ostream& os,Logger::ptr logger, LogLevel::Level level, LogEvent::ptr event) override{
+        os << event->getThreadName();
+    }
+};
+
 class FiberIdFormatItem: public LogFormatter::FormatItem { 
 public:
     FiberIdFormatItem(const std::string& str = "") {}
@@ -173,15 +181,16 @@ private:
 };
 
 LogEvent::LogEvent(std::shared_ptr<Logger> logger,LogLevel::Level level, const std::string& file,int32_t line, uint32_t elapse
-    , uint32_t thread_id, uint32_t fiber_id, uint64_t time)
+    , uint32_t thread_id, uint32_t fiber_id, uint64_t time,const std::string& thread_name)
     :m_file(file),
     m_line(line),
     m_elapse(elapse),
     m_threadId(thread_id),
     m_fiberId(fiber_id),
     m_time(time),
+    m_threadName(thread_name),
     m_logger(logger),
-    m_level(level) {}
+    m_level(level){}
 
 
 
@@ -224,7 +233,7 @@ Logger::Logger (const std::string& name)
     :m_name(name),
     m_level(LogLevel::DEBUG) {
 
-    m_formatter.reset(new LogFormatter("%d{%Y-%m-%d %H:%M:%S}%T[%t]%T[%F]%T[%p]%T[%c]%T%f:%l%T%m%n"));
+    m_formatter.reset(new LogFormatter("%d{%Y-%m-%d %H:%M:%S}%T[%t]%T%N%T[%F]%T[%p]%T[%c]%T%f:%l%T%m%n"));
     // m_formatter.reset(new LogFormatter("%d [%p] %f %l %m %n"));
 }
 
@@ -252,7 +261,7 @@ void Logger::setFormatter(LogFormatter::ptr val) {
     m_formatter = val;
 
     for(auto& i : m_appenders) {
-        //MutexType::Lock ll(i->m_mutex);
+        // MutexType::Lock ll(i->m_mutex);
         if(!i->m_hasFormatter) {
             i->m_formatter = m_formatter;
         }
@@ -504,6 +513,7 @@ void LogFormatter::init() {
         XX(l, LineFormatItem),
         XX(T, TabFormatItem),
         XX(F, FiberIdFormatItem),
+        XX(N, ThreadNameFormatItem)
 #undef XX
     };
 

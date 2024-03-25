@@ -41,7 +41,10 @@ Thread* Thread::GetThis() {
     return t_thread;
 }
 
-void Thread::setName(const std::string& name) {
+void Thread::SetName(const std::string& name) {
+    if(name.empty()) {
+        return;
+    }
     if(t_thread) {
         t_thread->m_name = name;
     }
@@ -50,6 +53,7 @@ void Thread::setName(const std::string& name) {
 
 Thread::Thread(std::function<void()> cb, const std::string& name)
     :m_cb(cb),m_name(name) {
+    // SYLAR_LOG_INFO(g_logger) << "thread name ="<<name << "m_name ="<<m_name;
     if(name.empty()) {
         m_name = "UNKNOW";
     }
@@ -88,7 +92,9 @@ void* Thread::run(void* arg) {
     Thread* thread = (Thread*)arg;
     t_thread = thread;
     thread->m_id = sylar::GetThreadId();
-    pthread_setname_np(pthread_self(), thread->m_name.substr(0, 15).c_str());
+    // SYLAR_LOG_WARN(g_logger) << "thread->m_name:"<<  thread->m_name.substr(0, 15).c_str();
+    SetName(thread->m_name);
+    // pthread_setname_np(pthread_self(), thread->m_name.substr(0, 15).c_str());
 
     std::function<void()> cb;
     cb.swap(thread->m_cb);

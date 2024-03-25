@@ -5,7 +5,8 @@ sylar::Logger::ptr g_logger = SYLAR_LOG_ROOT();
 
 int count = 0;
 // sylar::RWMutex s_mutex;
-sylar::Mutex s_mutex;
+// sylar::Mutex s_mutex;
+sylar::SpinLock s_mutex;
 void fun1() {
     SYLAR_LOG_INFO(g_logger) << "name: "<< sylar::Thread::GetName()
         << " this.name: " << sylar::Thread::GetThis()->getName()
@@ -14,6 +15,7 @@ void fun1() {
     for(int i = 0; i < 100000; ++i) {
         // sylar::RWMutex::WriteLock lock(s_mutex);
         // sylar::Mutex::Lock lock(s_mutex);
+        sylar::SpinLock::Lock lock(s_mutex);
         ++count;
     }
 }
@@ -53,8 +55,8 @@ void test_thread_print() {
     SYLAR_LOG_INFO(g_logger) << "count=" << count;
 }
 
-int main(int argc, char** args) {
-    SYLAR_LOG_INFO(g_logger) << "thread test begin";
+void test_lock() {
+     SYLAR_LOG_INFO(g_logger) << "thread test begin";
     std::vector<sylar::Thread::ptr> thrs;
     for(int i = 0; i < 5; ++i) {
         sylar::Thread::ptr thr1(new sylar::Thread(&fun1, "name_" + std::to_string(i)));
@@ -66,5 +68,9 @@ int main(int argc, char** args) {
 
     SYLAR_LOG_INFO(g_logger) << "thread test end";
     SYLAR_LOG_INFO(g_logger) << "count=" << count;
+}
+
+int main(int argc, char** args) {
+    test_lock();
     return 0;
 }

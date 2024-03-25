@@ -25,6 +25,12 @@
 
 namespace sylar {
 
+#define DPrintfDebug(logger , fmt, ...) { \
+    if(DEBUG) {  \
+        SYLAR_LOG_FMT_DEBUG(logger, fmt, __VA_ARGS__); \
+    } \
+}
+
 /**
  * @brief 返回当前线程的ID
  */
