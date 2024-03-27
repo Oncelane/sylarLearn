@@ -17,7 +17,7 @@ void test_fiber_one() {
 
     sleep(1);
 
-    sylar::Scheduler::GetThis()->schedule(&test_fiber);
+    // sylar::Scheduler::GetThis()->schedule(&test_fiber);
     
 }
 
@@ -25,7 +25,7 @@ int main(int argc, char **argv) {
     SYLAR_LOG_INFO(g_logger) << "main start";
     sylar::Scheduler sc(5, false, "test");
     sc.start();
-    sc.schedule(&test_fiber);
+    sc.schedule(&test_fiber_one);
     sc.stop();
     SYLAR_LOG_INFO(g_logger) << "main end";
     return 0;

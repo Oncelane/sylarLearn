@@ -258,6 +258,33 @@ sylar/fiber.cc.s:
 	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/fiber.cc.s
 .PHONY : sylar/fiber.cc.s
 
+sylar/iomanager.o: sylar/iomanager.cc.o
+
+.PHONY : sylar/iomanager.o
+
+# target to build an object file
+sylar/iomanager.cc.o:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/iomanager.cc.o
+.PHONY : sylar/iomanager.cc.o
+
+sylar/iomanager.i: sylar/iomanager.cc.i
+
+.PHONY : sylar/iomanager.i
+
+# target to preprocess a source file
+sylar/iomanager.cc.i:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/iomanager.cc.i
+.PHONY : sylar/iomanager.cc.i
+
+sylar/iomanager.s: sylar/iomanager.cc.s
+
+.PHONY : sylar/iomanager.s
+
+# target to generate assembly for a file
+sylar/iomanager.cc.s:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/iomanager.cc.s
+.PHONY : sylar/iomanager.cc.s
+
 sylar/log.o: sylar/log.cc.o
 
 .PHONY : sylar/log.o
@@ -338,6 +365,33 @@ sylar/thread.s: sylar/thread.cc.s
 sylar/thread.cc.s:
 	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/thread.cc.s
 .PHONY : sylar/thread.cc.s
+
+sylar/timer.o: sylar/timer.cc.o
+
+.PHONY : sylar/timer.o
+
+# target to build an object file
+sylar/timer.cc.o:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/timer.cc.o
+.PHONY : sylar/timer.cc.o
+
+sylar/timer.i: sylar/timer.cc.i
+
+.PHONY : sylar/timer.i
+
+# target to preprocess a source file
+sylar/timer.cc.i:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/timer.cc.i
+.PHONY : sylar/timer.cc.i
+
+sylar/timer.s: sylar/timer.cc.s
+
+.PHONY : sylar/timer.s
+
+# target to generate assembly for a file
+sylar/timer.cc.s:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/timer.cc.s
+.PHONY : sylar/timer.cc.s
 
 sylar/util.o: sylar/util.cc.o
 
@@ -549,6 +603,9 @@ help:
 	@echo "... sylar/fiber.o"
 	@echo "... sylar/fiber.i"
 	@echo "... sylar/fiber.s"
+	@echo "... sylar/iomanager.o"
+	@echo "... sylar/iomanager.i"
+	@echo "... sylar/iomanager.s"
 	@echo "... sylar/log.o"
 	@echo "... sylar/log.i"
 	@echo "... sylar/log.s"
@@ -558,6 +615,9 @@ help:
 	@echo "... sylar/thread.o"
 	@echo "... sylar/thread.i"
 	@echo "... sylar/thread.s"
+	@echo "... sylar/timer.o"
+	@echo "... sylar/timer.i"
+	@echo "... sylar/timer.s"
 	@echo "... sylar/util.o"
 	@echo "... sylar/util.i"
 	@echo "... sylar/util.s"

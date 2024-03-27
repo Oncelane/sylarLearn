@@ -1,7 +1,7 @@
 #include "log.h"
 #include "config.h"
 #include "util.h"
-#include "marco.h"
+#include "macro.h"
 
 namespace sylar {
 

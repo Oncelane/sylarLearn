@@ -82,13 +82,13 @@ singleton.h
 util.h
 /home/oncelane/workspace/sylar/sylar/util.h
 
-/home/oncelane/workspace/sylar/sylar/marco.h
+/home/oncelane/workspace/sylar/sylar/macro.h
 string.h
 -
 assert.h
 -
-execinfo.h
--
+log.h
+/home/oncelane/workspace/sylar/sylar/log.h
 util.h
 /home/oncelane/workspace/sylar/sylar/util.h
 
@@ -125,8 +125,8 @@ util.h
 /home/oncelane/workspace/sylar/sylar/util.h
 thread.h
 /home/oncelane/workspace/sylar/sylar/thread.h
-marco.h
-/home/oncelane/workspace/sylar/sylar/marco.h
+macro.h
+/home/oncelane/workspace/sylar/sylar/macro.h
 fiber.h
 /home/oncelane/workspace/sylar/sylar/fiber.h
 
@@ -142,6 +142,8 @@ memory
 pthread.h
 -
 sys/types.h
+-
+string
 -
 
 /home/oncelane/workspace/sylar/sylar/util.h
