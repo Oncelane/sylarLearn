@@ -8,7 +8,6 @@
 #include <pthread.h>
 #include <sys/types.h>
 #include <string>
-
 namespace sylar {
 
 
@@ -165,51 +164,100 @@ public:
 //     pthread_mutex_t m_mutex;
 };
 
-class RWMutex{
+class RWMutex {
 public:
+
+    /// 局部读锁
     typedef ReadScopedLockImpl<RWMutex> ReadLock;
+
+    /// 局部写锁
     typedef WriteScopedLockImpl<RWMutex> WriteLock;
+
+    /**
+     * @brief 构造函数
+     */
     RWMutex() {
         pthread_rwlock_init(&m_lock, nullptr);
     }
+    
+    /**
+     * @brief 析构函数
+     */
     ~RWMutex() {
         pthread_rwlock_destroy(&m_lock);
     }
 
+    /**
+     * @brief 上读锁
+     */
     void rdlock() {
         pthread_rwlock_rdlock(&m_lock);
     }
 
+    /**
+     * @brief 上写锁
+     */
     void wrlock() {
         pthread_rwlock_wrlock(&m_lock);
     }
 
+    /**
+     * @brief 解锁
+     */
     void unlock() {
-        pthread_rwlock_unlock(&m_lock); 
+        pthread_rwlock_unlock(&m_lock);
     }
 private:
+    /// 读写锁
     pthread_rwlock_t m_lock;
 };
 
-class NullRWMutex{
+class NullRWMutex {
 public:
-    typedef ReadScopedLockImpl<NullMutex> ReadLock;
-    typedef WriteScopedLockImpl<NullMutex> WriteLock;
+
+    /// 局部读锁
+    typedef ReadScopedLockImpl<NullRWMutex> ReadLock;
+
+    /// 局部写锁
+    typedef WriteScopedLockImpl<NullRWMutex> WriteLock;
+
+    /**
+     * @brief 构造函数
+     */
     NullRWMutex() {
+        // pthread_rwlock_init(&m_lock, nullptr);
     }
+    
+    /**
+     * @brief 析构函数
+     */
     ~NullRWMutex() {
+        // pthread_rwlock_destroy(&m_lock);
     }
 
+    /**
+     * @brief 上读锁
+     */
     void rdlock() {
+        // pthread_rwlock_rdlock(&m_lock);
     }
 
+    /**
+     * @brief 上写锁
+     */
     void wrlock() {
+        // pthread_rwlock_wrlock(&m_lock);
     }
 
+    /**
+     * @brief 解锁
+     */
     void unlock() {
+        // pthread_rwlock_unlock(&m_lock);
     }
-// private:
-//     pthread_rwlock_t m_lock;
+private:
+    /// 读写锁
+    pthread_rwlock_t m_lock;
 };
 
 class SpinLock{

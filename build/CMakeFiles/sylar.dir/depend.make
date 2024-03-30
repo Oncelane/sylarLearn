@@ -58,7 +58,9 @@ CMakeFiles/sylar.dir/sylar/thread.cc.o: ../sylar/thread.cc
 CMakeFiles/sylar.dir/sylar/thread.cc.o: ../sylar/thread.h
 CMakeFiles/sylar.dir/sylar/thread.cc.o: ../sylar/util.h
 
+CMakeFiles/sylar.dir/sylar/timer.cc.o: ../sylar/log.h
 CMakeFiles/sylar.dir/sylar/timer.cc.o: ../sylar/mutex.h
+CMakeFiles/sylar.dir/sylar/timer.cc.o: ../sylar/singleton.h
 CMakeFiles/sylar.dir/sylar/timer.cc.o: ../sylar/thread.h
 CMakeFiles/sylar.dir/sylar/timer.cc.o: ../sylar/timer.cc
 CMakeFiles/sylar.dir/sylar/timer.cc.o: ../sylar/timer.h

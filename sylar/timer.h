@@ -13,7 +13,7 @@
 #include <vector>
 #include <set>
 #include "thread.h"
-
+#include "log.h"
 namespace sylar {
 
 class TimerManager;
@@ -109,7 +109,6 @@ public:
      */
     Timer::ptr addTimer(uint64_t ms, std::function<void()> cb
                         ,bool recurring = false);
-
     /**
      * @brief 添加条件定时器
      * @param[in] ms 定时器执行间隔时间
@@ -147,6 +146,7 @@ protected:
      * @brief 将定时器添加到管理器中
      */
     void addTimer(Timer::ptr val, RWMutexType::WriteLock& lock);
+    void addTimer(Timer::ptr val);
 private:
     /**
      * @brief 检测服务器时间是否被调后了

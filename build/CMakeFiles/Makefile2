@@ -56,6 +56,8 @@ CMAKE_BINARY_DIR = /home/oncelane/workspace/sylar/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/test_timer.dir/all
+all: CMakeFiles/test_io.dir/all
 all: CMakeFiles/test_scheduler.dir/all
 all: CMakeFiles/test_fiber.dir/all
 all: CMakeFiles/test_util.dir/all
@@ -72,6 +74,8 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/test_timer.dir/clean
+clean: CMakeFiles/test_io.dir/clean
 clean: CMakeFiles/test_scheduler.dir/clean
 clean: CMakeFiles/test_fiber.dir/clean
 clean: CMakeFiles/test_util.dir/clean
@@ -83,13 +87,67 @@ clean: CMakeFiles/sylar.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/test_timer.dir
+
+# All Build rule for target.
+CMakeFiles/test_timer.dir/all: CMakeFiles/sylar.dir/all
+	$(MAKE) -f CMakeFiles/test_timer.dir/build.make CMakeFiles/test_timer.dir/depend
+	$(MAKE) -f CMakeFiles/test_timer.dir/build.make CMakeFiles/test_timer.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/oncelane/workspace/sylar/build/CMakeFiles --progress-num=22,23 "Built target test_timer"
+.PHONY : CMakeFiles/test_timer.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_timer.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/oncelane/workspace/sylar/build/CMakeFiles 11
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_timer.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/oncelane/workspace/sylar/build/CMakeFiles 0
+.PHONY : CMakeFiles/test_timer.dir/rule
+
+# Convenience name for target.
+test_timer: CMakeFiles/test_timer.dir/rule
+
+.PHONY : test_timer
+
+# clean rule for target.
+CMakeFiles/test_timer.dir/clean:
+	$(MAKE) -f CMakeFiles/test_timer.dir/build.make CMakeFiles/test_timer.dir/clean
+.PHONY : CMakeFiles/test_timer.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/test_io.dir
+
+# All Build rule for target.
+CMakeFiles/test_io.dir/all: CMakeFiles/sylar.dir/all
+	$(MAKE) -f CMakeFiles/test_io.dir/build.make CMakeFiles/test_io.dir/depend
+	$(MAKE) -f CMakeFiles/test_io.dir/build.make CMakeFiles/test_io.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/oncelane/workspace/sylar/build/CMakeFiles --progress-num=16,17 "Built target test_io"
+.PHONY : CMakeFiles/test_io.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_io.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/oncelane/workspace/sylar/build/CMakeFiles 11
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_io.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/oncelane/workspace/sylar/build/CMakeFiles 0
+.PHONY : CMakeFiles/test_io.dir/rule
+
+# Convenience name for target.
+test_io: CMakeFiles/test_io.dir/rule
+
+.PHONY : test_io
+
+# clean rule for target.
+CMakeFiles/test_io.dir/clean:
+	$(MAKE) -f CMakeFiles/test_io.dir/build.make CMakeFiles/test_io.dir/clean
+.PHONY : CMakeFiles/test_io.dir/clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/test_scheduler.dir
 
 # All Build rule for target.
 CMakeFiles/test_scheduler.dir/all: CMakeFiles/sylar.dir/all
 	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/depend
 	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/oncelane/workspace/sylar/build/CMakeFiles --progress-num=16,17 "Built target test_scheduler"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/oncelane/workspace/sylar/build/CMakeFiles --progress-num=18,19 "Built target test_scheduler"
 .PHONY : CMakeFiles/test_scheduler.dir/all
 
 # Build rule for subdir invocation for target.
@@ -143,7 +201,7 @@ CMakeFiles/test_fiber.dir/clean:
 CMakeFiles/test_util.dir/all: CMakeFiles/sylar.dir/all
 	$(MAKE) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/depend
 	$(MAKE) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/oncelane/workspace/sylar/build/CMakeFiles --progress-num=20,21 "Built target test_util"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/oncelane/workspace/sylar/build/CMakeFiles --progress-num=24,25 "Built target test_util"
 .PHONY : CMakeFiles/test_util.dir/all
 
 # Build rule for subdir invocation for target.
@@ -197,7 +255,7 @@ CMakeFiles/test_config.dir/clean:
 CMakeFiles/test_thread.dir/all: CMakeFiles/sylar.dir/all
 	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/depend
 	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/oncelane/workspace/sylar/build/CMakeFiles --progress-num=18,19 "Built target test_thread"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/oncelane/workspace/sylar/build/CMakeFiles --progress-num=20,21 "Built target test_thread"
 .PHONY : CMakeFiles/test_thread.dir/all
 
 # Build rule for subdir invocation for target.

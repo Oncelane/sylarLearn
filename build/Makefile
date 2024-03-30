@@ -114,6 +114,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named test_timer
+
+# Build rule for target.
+test_timer: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_timer
+.PHONY : test_timer
+
+# fast build rule for target.
+test_timer/fast:
+	$(MAKE) -f CMakeFiles/test_timer.dir/build.make CMakeFiles/test_timer.dir/build
+.PHONY : test_timer/fast
+
+#=============================================================================
+# Target rules for targets named test_io
+
+# Build rule for target.
+test_io: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_io
+.PHONY : test_io
+
+# fast build rule for target.
+test_io/fast:
+	$(MAKE) -f CMakeFiles/test_io.dir/build.make CMakeFiles/test_io.dir/build
+.PHONY : test_io/fast
+
+#=============================================================================
 # Target rules for targets named test_scheduler
 
 # Build rule for target.
@@ -501,6 +527,33 @@ tests/test_fiber.cc.s:
 	$(MAKE) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cc.s
 .PHONY : tests/test_fiber.cc.s
 
+tests/test_io.o: tests/test_io.cc.o
+
+.PHONY : tests/test_io.o
+
+# target to build an object file
+tests/test_io.cc.o:
+	$(MAKE) -f CMakeFiles/test_io.dir/build.make CMakeFiles/test_io.dir/tests/test_io.cc.o
+.PHONY : tests/test_io.cc.o
+
+tests/test_io.i: tests/test_io.cc.i
+
+.PHONY : tests/test_io.i
+
+# target to preprocess a source file
+tests/test_io.cc.i:
+	$(MAKE) -f CMakeFiles/test_io.dir/build.make CMakeFiles/test_io.dir/tests/test_io.cc.i
+.PHONY : tests/test_io.cc.i
+
+tests/test_io.s: tests/test_io.cc.s
+
+.PHONY : tests/test_io.s
+
+# target to generate assembly for a file
+tests/test_io.cc.s:
+	$(MAKE) -f CMakeFiles/test_io.dir/build.make CMakeFiles/test_io.dir/tests/test_io.cc.s
+.PHONY : tests/test_io.cc.s
+
 tests/test_scheduler.o: tests/test_scheduler.cc.o
 
 .PHONY : tests/test_scheduler.o
@@ -555,6 +608,33 @@ tests/test_thread.cc.s:
 	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/tests/test_thread.cc.s
 .PHONY : tests/test_thread.cc.s
 
+tests/test_timer.o: tests/test_timer.cc.o
+
+.PHONY : tests/test_timer.o
+
+# target to build an object file
+tests/test_timer.cc.o:
+	$(MAKE) -f CMakeFiles/test_timer.dir/build.make CMakeFiles/test_timer.dir/tests/test_timer.cc.o
+.PHONY : tests/test_timer.cc.o
+
+tests/test_timer.i: tests/test_timer.cc.i
+
+.PHONY : tests/test_timer.i
+
+# target to preprocess a source file
+tests/test_timer.cc.i:
+	$(MAKE) -f CMakeFiles/test_timer.dir/build.make CMakeFiles/test_timer.dir/tests/test_timer.cc.i
+.PHONY : tests/test_timer.cc.i
+
+tests/test_timer.s: tests/test_timer.cc.s
+
+.PHONY : tests/test_timer.s
+
+# target to generate assembly for a file
+tests/test_timer.cc.s:
+	$(MAKE) -f CMakeFiles/test_timer.dir/build.make CMakeFiles/test_timer.dir/tests/test_timer.cc.s
+.PHONY : tests/test_timer.cc.s
+
 tests/test_util.o: tests/test_util.cc.o
 
 .PHONY : tests/test_util.o
@@ -588,6 +668,8 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... test_timer"
+	@echo "... test_io"
 	@echo "... test_scheduler"
 	@echo "... test_fiber"
 	@echo "... rebuild_cache"
@@ -630,12 +712,18 @@ help:
 	@echo "... tests/test_fiber.o"
 	@echo "... tests/test_fiber.i"
 	@echo "... tests/test_fiber.s"
+	@echo "... tests/test_io.o"
+	@echo "... tests/test_io.i"
+	@echo "... tests/test_io.s"
 	@echo "... tests/test_scheduler.o"
 	@echo "... tests/test_scheduler.i"
 	@echo "... tests/test_scheduler.s"
 	@echo "... tests/test_thread.o"
 	@echo "... tests/test_thread.i"
 	@echo "... tests/test_thread.s"
+	@echo "... tests/test_timer.o"
+	@echo "... tests/test_timer.i"
+	@echo "... tests/test_timer.s"
 	@echo "... tests/test_util.o"
 	@echo "... tests/test_util.i"
 	@echo "... tests/test_util.s"

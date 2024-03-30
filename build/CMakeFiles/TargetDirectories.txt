@@ -1,3 +1,5 @@
+/home/oncelane/workspace/sylar/build/CMakeFiles/test_timer.dir
+/home/oncelane/workspace/sylar/build/CMakeFiles/test_io.dir
 /home/oncelane/workspace/sylar/build/CMakeFiles/test_scheduler.dir
 /home/oncelane/workspace/sylar/build/CMakeFiles/test_fiber.dir
 /home/oncelane/workspace/sylar/build/CMakeFiles/rebuild_cache.dir

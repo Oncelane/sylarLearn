@@ -3,6 +3,7 @@
 
 namespace sylar {
 
+static sylar::Logger::ptr g_logger = SYLAR_LOG_ROOT();
 bool Timer::Comparator::operator()(const Timer::ptr& lhs
                         ,const Timer::ptr& rhs) const {
     if(!lhs && !rhs) {
@@ -38,6 +39,7 @@ Timer::Timer(uint64_t next)
 }
 
 bool Timer::cancel() {
+
     TimerManager::RWMutexType::WriteLock lock(m_manager->m_mutex);
     if(m_cb) {
         m_cb = nullptr;
@@ -45,11 +47,14 @@ bool Timer::cancel() {
         m_manager->m_timers.erase(it);
         return true;
     }
+    SYLAR_LOG_DEBUG(g_logger) << "canel unlock";
     return false;
 }
 
 bool Timer::refresh() {
+
     TimerManager::RWMutexType::WriteLock lock(m_manager->m_mutex);
+    SYLAR_LOG_DEBUG(g_logger) << "refresh lock";
     if(!m_cb) {
         return false;
     }
@@ -67,15 +72,18 @@ bool Timer::reset(uint64_t ms, bool from_now) {
     if(ms == m_ms && !from_now) {
         return true;
     }
-    TimerManager::RWMutexType::WriteLock lock(m_manager->m_mutex);
-    if(!m_cb) {
-        return false;
+    // TimerManager::RWMutexType::WriteLock lock(m_manager->m_mutex);
+    {
+        TimerManager::RWMutexType::WriteLock lock(m_manager->m_mutex);
+        if(!m_cb) {
+            return false;
+        }
+        auto it = m_manager->m_timers.find(shared_from_this());
+        if(it == m_manager->m_timers.end()) {
+            return false;
+        }
+        m_manager->m_timers.erase(it);
     }
-    auto it = m_manager->m_timers.find(shared_from_this());
-    if(it == m_manager->m_timers.end()) {
-        return false;
-    }
-    m_manager->m_timers.erase(it);
     uint64_t start = 0;
     if(from_now) {
         start = sylar::GetCurrentMS();
@@ -84,7 +92,10 @@ bool Timer::reset(uint64_t ms, bool from_now) {
     }
     m_ms = ms;
     m_next = start + m_ms;
-    m_manager->addTimer(shared_from_this(), lock);
+
+    // m_manager->addTimer(shared_from_this(), lock);
+    m_manager->addTimer(shared_from_this());
+
     return true;
 
 }
@@ -99,8 +110,7 @@ TimerManager::~TimerManager() {
 Timer::ptr TimerManager::addTimer(uint64_t ms, std::function<void()> cb
                                   ,bool recurring) {
     Timer::ptr timer(new Timer(ms, cb, recurring, this));
-    RWMutexType::WriteLock lock(m_mutex);
-    addTimer(timer, lock);
+    addTimer(timer);
     return timer;
 }
 
@@ -135,10 +145,12 @@ uint64_t TimerManager::getNextTimer() {
 
 void TimerManager::listExpiredCb(std::vector<std::function<void()> >& cbs) {
     uint64_t now_ms = sylar::GetCurrentMS();
+
     std::vector<Timer::ptr> expired;
     {
         RWMutexType::ReadLock lock(m_mutex);
         if(m_timers.empty()) {
+
             return;
         }
     }
@@ -169,16 +181,32 @@ void TimerManager::listExpiredCb(std::vector<std::function<void()> >& cbs) {
             timer->m_cb = nullptr;
         }
     }
+    // SYLAR_LOG_DEBUG(SYLAR_LOG_ROOT()) << "cbs.size() ="<<cbs.size();
 }
 
-void TimerManager::addTimer(Timer::ptr val, RWMutexType::WriteLock& lock) {
+void TimerManager::addTimer(Timer::ptr val, RWMutexType::WriteLock& lock ) {
     auto it = m_timers.insert(val).first;
     bool at_front = (it == m_timers.begin()) && !m_tickled;
     if(at_front) {
         m_tickled = true;
     }
     lock.unlock();
+    if(at_front) {
+        onTimerInsertedAtFront();
+    }
+}
 
+void TimerManager::addTimer(Timer::ptr val) {
+    std::set<sylar::Timer::ptr, sylar::Timer::Comparator>::iterator it;
+    {
+        RWMutexType::WriteLock lock(m_mutex);
+        it = m_timers.insert(val).first;
+
+    }
+    bool at_front = (it == m_timers.begin()) && !m_tickled;
+    if(at_front) {
+        m_tickled = true;
+    }
     if(at_front) {
         onTimerInsertedAtFront();
     }

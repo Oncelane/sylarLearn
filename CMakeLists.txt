@@ -64,5 +64,13 @@ add_executable(test_scheduler tests/test_scheduler.cc)
 add_dependencies(test_scheduler sylar)
 target_link_libraries(test_scheduler sylar ${LIBS})
 
+add_executable(test_io tests/test_io.cc)
+add_dependencies(test_io sylar)
+target_link_libraries(test_io sylar ${LIBS})
+
+add_executable(test_timer tests/test_timer.cc)
+add_dependencies(test_timer sylar)
+target_link_libraries(test_timer sylar ${LIBS})
+
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

@@ -59,7 +59,9 @@ CMakeFiles/sylar.dir/sylar/thread.cc.o
  /home/oncelane/workspace/sylar/sylar/thread.h
  /home/oncelane/workspace/sylar/sylar/util.h
 CMakeFiles/sylar.dir/sylar/timer.cc.o
+ /home/oncelane/workspace/sylar/sylar/log.h
  /home/oncelane/workspace/sylar/sylar/mutex.h
+ /home/oncelane/workspace/sylar/sylar/singleton.h
  /home/oncelane/workspace/sylar/sylar/thread.h
  /home/oncelane/workspace/sylar/sylar/timer.cc
  /home/oncelane/workspace/sylar/sylar/timer.h

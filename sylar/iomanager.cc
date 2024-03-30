@@ -310,7 +310,9 @@ void IOManager::tickle() {
     if(!hasIdleThreads()) {
         return;
     }
+    // SYLAR_LOG_DEBUG(g_logger) << "prepare to write";
     int rt = write(m_tickleFds[1], "T", 1);
+    // SYLAR_LOG_DEBUG(g_logger) << "write success";
     SYLAR_ASSERT(rt == 1);
 }
 
@@ -338,13 +340,14 @@ void IOManager::idle() {
     while(true) {
         uint64_t next_timeout = 0;
         if(SYLAR_UNLIKELY(stopping(next_timeout))) {
-            SYLAR_LOG_INFO(g_logger) << "name=" << getName()
+            SYLAR_LOG_INFO(g_logger) << "name =" << getName()
                                      << " idle stopping exit";
             break;
         }
 
         int rt = 0;
         do {
+            // SYLAR_LOG_INFO(g_logger)<< "in";
             static const int MAX_TIMEOUT = 3000;
             if(next_timeout != ~0ull) {
                 next_timeout = (int)next_timeout > MAX_TIMEOUT
@@ -352,9 +355,11 @@ void IOManager::idle() {
             } else {
                 next_timeout = MAX_TIMEOUT;
             }
+            // SYLAR_LOG_DEBUG(g_logger) << "next_timeount:" <<(int)next_timeout;
             rt = epoll_wait(m_epfd, events, MAX_EVNETS, (int)next_timeout);
             if(rt < 0 && errno == EINTR) {
             } else {
+                // SYLAR_LOG_INFO(g_logger)<< "out";
                 break;
             }
         } while(true);
@@ -362,7 +367,7 @@ void IOManager::idle() {
         std::vector<std::function<void()> > cbs;
         listExpiredCb(cbs);
         if(!cbs.empty()) {
-            //SYLAR_LOG_DEBUG(g_logger) << "on timer cbs.size=" << cbs.size();
+            // SYLAR_LOG_DEBUG(g_logger) << "on timer cbs.size=" << cbs.size();
             schedule(cbs.begin(), cbs.end());
             cbs.clear();
         }
