@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/oncelane/workspace/sylar/sylar/config.cc" "/home/oncelane/workspace/sylar/build/CMakeFiles/sylar.dir/sylar/config.cc.o"
   "/home/oncelane/workspace/sylar/sylar/fiber.cc" "/home/oncelane/workspace/sylar/build/CMakeFiles/sylar.dir/sylar/fiber.cc.o"
+  "/home/oncelane/workspace/sylar/sylar/hook.cc" "/home/oncelane/workspace/sylar/build/CMakeFiles/sylar.dir/sylar/hook.cc.o"
   "/home/oncelane/workspace/sylar/sylar/iomanager.cc" "/home/oncelane/workspace/sylar/build/CMakeFiles/sylar.dir/sylar/iomanager.cc.o"
   "/home/oncelane/workspace/sylar/sylar/log.cc" "/home/oncelane/workspace/sylar/build/CMakeFiles/sylar.dir/sylar/log.cc.o"
   "/home/oncelane/workspace/sylar/sylar/scheduler.cc" "/home/oncelane/workspace/sylar/build/CMakeFiles/sylar.dir/sylar/scheduler.cc.o"

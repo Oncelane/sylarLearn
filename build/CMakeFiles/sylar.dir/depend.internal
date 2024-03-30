@@ -20,6 +20,18 @@ CMakeFiles/sylar.dir/sylar/fiber.cc.o
  /home/oncelane/workspace/sylar/sylar/singleton.h
  /home/oncelane/workspace/sylar/sylar/thread.h
  /home/oncelane/workspace/sylar/sylar/util.h
+CMakeFiles/sylar.dir/sylar/hook.cc.o
+ /home/oncelane/workspace/sylar/sylar/fiber.h
+ /home/oncelane/workspace/sylar/sylar/hook.cc
+ /home/oncelane/workspace/sylar/sylar/hook.h
+ /home/oncelane/workspace/sylar/sylar/iomanager.h
+ /home/oncelane/workspace/sylar/sylar/log.h
+ /home/oncelane/workspace/sylar/sylar/mutex.h
+ /home/oncelane/workspace/sylar/sylar/scheduler.h
+ /home/oncelane/workspace/sylar/sylar/singleton.h
+ /home/oncelane/workspace/sylar/sylar/thread.h
+ /home/oncelane/workspace/sylar/sylar/timer.h
+ /home/oncelane/workspace/sylar/sylar/util.h
 CMakeFiles/sylar.dir/sylar/iomanager.cc.o
  /home/oncelane/workspace/sylar/sylar/fiber.h
  /home/oncelane/workspace/sylar/sylar/iomanager.cc
@@ -43,6 +55,7 @@ CMakeFiles/sylar.dir/sylar/log.cc.o
  /home/oncelane/workspace/sylar/sylar/util.h
 CMakeFiles/sylar.dir/sylar/scheduler.cc.o
  /home/oncelane/workspace/sylar/sylar/fiber.h
+ /home/oncelane/workspace/sylar/sylar/hook.h
  /home/oncelane/workspace/sylar/sylar/log.h
  /home/oncelane/workspace/sylar/sylar/macro.h
  /home/oncelane/workspace/sylar/sylar/mutex.h

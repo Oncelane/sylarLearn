@@ -175,6 +175,8 @@ set
 -
 thread.h
 /home/oncelane/workspace/sylar/sylar/thread.h
+log.h
+/home/oncelane/workspace/sylar/sylar/log.h
 
 /home/oncelane/workspace/sylar/sylar/util.h
 cxxabi.h

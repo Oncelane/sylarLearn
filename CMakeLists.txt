@@ -29,7 +29,8 @@ find_library(PTHREAD pthread)
 set(LIBS 
         sylar
         pthread
-        yaml-cpp)
+        yaml-cpp
+        dl)
 
 message("***", ${LIBS})
 
@@ -71,6 +72,10 @@ target_link_libraries(test_io sylar ${LIBS})
 add_executable(test_timer tests/test_timer.cc)
 add_dependencies(test_timer sylar)
 target_link_libraries(test_timer sylar ${LIBS})
+
+add_executable(test_hook tests/test_hook.cc)
+add_dependencies(test_hook sylar)
+target_link_libraries(test_hook sylar ${LIBS})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

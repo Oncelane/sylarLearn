@@ -2,6 +2,7 @@
     "go.gopath": "${workspaceFolder}",
     "files.associations": {
         "*.cc": "cpp",
+        "*.h": "cpp",
         "unordered_set": "cpp",
         "set": "cpp",
         "vector": "cpp",
@@ -76,7 +77,9 @@
         "stack": "cpp",
         "future": "cpp",
         "coroutine": "cpp",
-        "resumable": "cpp"
+        "resumable": "cpp",
+        "chrono": "cpp",
+        "*.tcc": "cpp"
     },
     "cmake.configureOnOpen": false,
     "C_Cpp.intelliSenseEngine":"default",
