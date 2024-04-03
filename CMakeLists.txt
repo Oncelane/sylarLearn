@@ -12,14 +12,20 @@ set (CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -o0 -g -std=c++11 -Wall -Wno-depr
 #     sylar/util.cc
 # )
 include_directories(.)
-include_directories(/apps/oncelane/include)
-link_directories(/apps/oncelane/lib)
+# include_directories(./sylar)
+# include_directories(/apps/oncelane/include)
+# link_directories(/apps/oncelane/lib)
 
 
 file(GLOB LIB_SRC
     "sylar/*.h"
     "sylar/*.cc"
+    "sylar/http/*.cc"
+    "sylar/http/*.h"
+    "sylar/util/*.h"
+    "sylar/util/*.cc"
 )
+
 
 add_library(sylar SHARED ${LIB_SRC})
 
@@ -30,7 +36,10 @@ set(LIBS
         sylar
         pthread
         yaml-cpp
-        dl)
+        dl
+        ssl
+        json
+        protobuf)
 
 message("***", ${LIBS})
 
@@ -76,6 +85,30 @@ target_link_libraries(test_timer sylar ${LIBS})
 add_executable(test_hook tests/test_hook.cc)
 add_dependencies(test_hook sylar)
 target_link_libraries(test_hook sylar ${LIBS})
+
+add_executable(test_address tests/test_address.cc)
+add_dependencies(test_address sylar)
+target_link_libraries(test_address sylar ${LIBS})
+
+add_executable(test_socket tests/test_socket.cc)
+add_dependencies(test_socket sylar)
+target_link_libraries(test_socket sylar ${LIBS})
+
+# add_executable(test_array tests/test_array.cc)
+# add_dependencies(test_array sylar)
+# target_link_libraries(test_array sylar ${LIBS})
+
+add_executable(test_bytearray tests/test_bytearray.cc)
+add_dependencies(test_bytearray sylar)
+target_link_libraries(test_bytearray sylar ${LIBS})
+
+add_executable(test_http tests/test_http.cc)
+add_dependencies(test_http sylar)
+target_link_libraries(test_http sylar ${LIBS})
+
+add_executable(test_http_parser tests/test_http_parser.cc)
+add_dependencies(test_http_parser sylar)
+target_link_libraries(test_http_parser sylar ${LIBS})
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

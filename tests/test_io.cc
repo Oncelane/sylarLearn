@@ -19,7 +19,7 @@ void test_fiber() {
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
     addr.sin_port = htons(80);
-    inet_pton(AF_INET, "192.168.134.128", &addr.sin_addr.s_addr);
+    inet_pton(AF_INET, "112.80.248.75", &addr.sin_addr.s_addr);
 
     if(!connect(fd, (const sockaddr *)&addr, sizeof(addr))) {
 
@@ -61,6 +61,7 @@ void test_fiber2() {
             SYLAR_LOG_INFO(g_logger) << "write callback";
             int rt = write(sock, "GET / HTTP/1.1\r\ncontent-length: 0\r\n\r\n",38);
             SYLAR_LOG_INFO(g_logger) << "write rt = " << rt;
+            sleep(1);
             });
         sylar::IOManager::GetThis()->addEvent(sock, sylar::IOManager::READ, [](){
             SYLAR_LOG_INFO(g_logger) << "read callback";
@@ -79,7 +80,7 @@ void test_fiber2() {
     }
 }
 
-void test01() {
+void test2() {
     sylar::IOManager iom(2, true, "IOM");
     iom.schedule(test_fiber2);
 }
@@ -92,6 +93,6 @@ void test1() {
 
 int main() {
     // g_logger->setLevel(sylar::LogLevel::INFO);
-    test01();
+    test2();
     return 0;
 }

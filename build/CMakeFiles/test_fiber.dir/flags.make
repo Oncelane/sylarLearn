@@ -6,5 +6,5 @@ CXX_FLAGS =  -rdynamic -o0 -g -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unus
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/oncelane/workspace/sylar/. -I/apps/oncelane/include 
+CXX_INCLUDES = -I/home/oncelane/workspace/sylar/. 
 

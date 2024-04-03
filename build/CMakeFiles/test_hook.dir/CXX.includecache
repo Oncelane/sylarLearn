@@ -6,6 +6,34 @@
 
 #IncludeRegexTransform: 
 
+../sylar/util/crypto_util.h
+openssl/ssl.h
+-
+openssl/evp.h
+-
+stdint.h
+-
+memory
+-
+string
+-
+
+../sylar/util/hash_util.h
+stdint.h
+-
+string
+-
+vector
+-
+
+../sylar/util/json_util.h
+string
+-
+iostream
+-
+json/json.h
+-
+
 /home/oncelane/workspace/sylar/sylar/fiber.h
 memory
 -
@@ -15,19 +43,19 @@ ucontext.h
 -
 
 /home/oncelane/workspace/sylar/sylar/hook.h
-unistd.h
--
-sys/socket.h
--
-sys/types.h
--
-unistd.h
--
-time.h
--
 fcntl.h
 -
 sys/ioctl.h
+-
+sys/types.h
+-
+sys/socket.h
+-
+stdint.h
+-
+time.h
+-
+unistd.h
 -
 
 /home/oncelane/workspace/sylar/sylar/iomanager.h
@@ -92,6 +120,8 @@ atomic
 list
 -
 
+/home/oncelane/workspace/sylar/sylar/noncopyable.h
+
 /home/oncelane/workspace/sylar/sylar/scheduler.h
 memory
 -
@@ -125,6 +155,8 @@ sys/types.h
 -
 string
 -
+noncopyable.h
+/home/oncelane/workspace/sylar/sylar/noncopyable.h
 
 /home/oncelane/workspace/sylar/sylar/timer.h
 memory
@@ -159,6 +191,8 @@ string
 -
 iomanip
 -
+json/json.h
+-
 yaml-cpp/yaml.h
 -
 iostream
@@ -167,10 +201,26 @@ boost/lexical_cast.hpp
 -
 google/protobuf/message.h
 -
+sylar/util/hash_util.h
+/home/oncelane/workspace/sylar/sylar/sylar/util/hash_util.h
+sylar/util/json_util.h
+/home/oncelane/workspace/sylar/sylar/sylar/util/json_util.h
+sylar/util/crypto_util.h
+/home/oncelane/workspace/sylar/sylar/sylar/util/crypto_util.h
 
 /home/oncelane/workspace/sylar/tests/test_hook.cc
 ../sylar/hook.h
 /home/oncelane/workspace/sylar/sylar/hook.h
 ../sylar/iomanager.h
 /home/oncelane/workspace/sylar/sylar/iomanager.h
+sys/socket.h
+-
+sys/types.h
+-
+fcntl.h
+-
+unistd.h
+-
+arpa/inet.h
+-
 
